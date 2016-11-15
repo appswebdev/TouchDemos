@@ -19,6 +19,9 @@ public class TouchView extends View {
     private Paint paint;
     private Path path;
     Bitmap bmp;
+    private float androidX;
+    private float androidY;
+    private int halfWidth;
 
     public TouchView(Context context) {
          this(context, null);
@@ -45,6 +48,8 @@ public class TouchView extends View {
         bmp =  BitmapFactory.decodeResource(
                 getContext().getResources(),
                 R.mipmap.ic_launcher);
+
+        halfWidth = bmp.getWidth() / 2;
     }
 
 
@@ -54,6 +59,8 @@ public class TouchView extends View {
         float x = e.getX();
         float y = e.getY();
 
+        androidX = x;
+        androidY = y;
         int action = e.getAction();
 
         switch (action){
@@ -74,7 +81,7 @@ public class TouchView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(bmp, 100, 100, null);
-        canvas.drawPath(path, paint);
+        canvas.drawBitmap(bmp, androidX - halfWidth, androidY - halfWidth, null);
+       // canvas.drawPath(path, paint);
     }
 }
