@@ -13,117 +13,16 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
-    RelativeLayout layout;
-    private String TAG = "Minhal";
-    Button btnA, btnB, btnC, btnD;
+public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        btnA = (Button) findViewById(R.id.btnA);
-        btnB = (Button) findViewById(R.id.btnB);
-        btnC = (Button) findViewById(R.id.btnC);
-        btnD = (Button) findViewById(R.id.btnD);
-
-        layout = (RelativeLayout) findViewById(R.id.layout);
-
-/*
-        layout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent e) {
-                float x = e.getX();
-                float y = e.getY();
-
-
-                float btnAX = btnA.getX();
-                float btnAY = btnA.getY();
-                int btnAWidth = btnA.getWidth();
-                int btnAHeight = btnA.getHeight();
-
-
-                Log.d(TAG, "btnAX " + btnAX);
-                Log.d(TAG, "btnAY " + btnAY);
-                Log.d(TAG, "btnAWidth " + btnAWidth);
-                Log.d(TAG, "btnAHeight " + btnAHeight);
-
-
-
-
-                int action = e.getAction();
-
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG, "Down " + x + ", " + y);
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        Log.d(TAG, "Move " + x + ", " + y);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Log.d(TAG, "Up " + x + ", " + y);
-                        break;
-                }
-                //The event is of interest
-                //continue receiving updates about the event.
-                return true;
-            }
-        });*/
+      //  setContentView(new TouchView(this));
+      setContentView(R.layout.activity_main);
     }
 
-
-    float btnAX;//= btnA.getX();
-    float btnAY;// = btnA.getY();
-    int btnAWidth; //= btnA.getWidth();
-    int btnAHeight;// = btnA.getHeight();
-
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-
-
-        btnAX = btnA.getX();
-        btnAY = btnA.getY();
-        btnAWidth = btnA.getWidth();
-        btnAHeight = btnA.getHeight();
-        super.onWindowFocusChanged(hasFocus);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent e) {
-        float x = e.getX();
-
-
-        float y = e.getY();
-
-
-        Log.d(TAG, "btnAX " + btnAX);
-        Log.d(TAG, "btnAY " + btnAY);
-        Log.d(TAG, "btnAWidth " + btnAWidth);
-        Log.d(TAG, "btnAHeight " + btnAHeight);
-
-
-        int action = e.getAction();
-
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                Log.d(TAG, "Down " + x + ", " + y);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                Log.d(TAG, "Move " + x + ", " + y);
-                break;
-            case MotionEvent.ACTION_UP:
-                Log.d(TAG, "Up " + x + ", " + y);
-                break;
-        }
-        //The event is of interest
-        //continue receiving updates about the event.
-        return true;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,11 +44,5 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return false;
     }
 }

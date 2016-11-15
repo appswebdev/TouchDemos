@@ -13,50 +13,8 @@
     tools:context="minhal.tomer.edu.touchdemos.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"
-        android:clickable="false"
-        android:id="@+id/btnA" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="B"
-        android:clickable="false"
-        android:layout_alignTop="@+id/btnD"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/btnB" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C"
-        android:clickable="false"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/btnD"
-        android:layout_alignStart="@+id/btnD"
-        android:id="@+id/btnC" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="D"
-        android:clickable="false"
-        android:layout_below="@+id/btnA"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="74dp"
-        android:id="@+id/btnD" />
-
-    <TextView
+    <minhal.tomer.edu.touchdemos.TouchView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
