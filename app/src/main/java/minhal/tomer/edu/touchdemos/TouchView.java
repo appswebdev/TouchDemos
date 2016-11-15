@@ -1,6 +1,8 @@
 package minhal.tomer.edu.touchdemos;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,6 +18,7 @@ public class TouchView extends View {
 
     private Paint paint;
     private Path path;
+    Bitmap bmp;
 
     public TouchView(Context context) {
          this(context, null);
@@ -38,6 +41,10 @@ public class TouchView extends View {
         paint.setAntiAlias(true);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
+
+        bmp =  BitmapFactory.decodeResource(
+                getContext().getResources(),
+                R.mipmap.ic_launcher);
     }
 
 
@@ -67,6 +74,7 @@ public class TouchView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.drawBitmap(bmp, 100, 100, null);
         canvas.drawPath(path, paint);
     }
 }
