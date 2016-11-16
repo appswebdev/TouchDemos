@@ -20,6 +20,8 @@ public class MultiTouchView extends View {
 
 
     private static final float RADIUS = 30;
+    private static final int[] COLORS = {Color.BLACK, Color.BLUE, Color.RED, Color.BLACK, Color.MAGENTA
+            , Color.GREEN, Color.GRAY};
 
     Paint mPaint;
     private String TAG = "Minhal";
@@ -34,6 +36,7 @@ public class MultiTouchView extends View {
     private void init() {
         mPaint = new Paint();
         mPaint.setColor(Color.BLUE);
+        mPaint.setTextSize(30);
     }
 
     @Override
@@ -83,7 +86,10 @@ public class MultiTouchView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-                for (Integer key : mPointers.keySet()) {
+        mPaint.setColor(Color.BLUE);
+        canvas.drawText("Total Pointers: " + mPointers.size(), 40, 40, mPaint);
+        for (Integer key : mPointers.keySet()) {
+            mPaint.setColor(COLORS[key % COLORS.length]);
             PointF p = mPointers.get(key);
             if (p != null) {
                 canvas.drawCircle(p.x, p.y, RADIUS, mPaint);

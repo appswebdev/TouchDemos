@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -16,12 +17,10 @@ import android.view.View;
  */
 public class TouchView extends View {
 
+    private static final String TAG = "Minhal";
     private Paint paint;
     private Path path;
     Bitmap bmp;
-    private float androidX;
-    private float androidY;
-    private int halfWidth;
 
     public TouchView(Context context) {
          this(context, null);
@@ -44,13 +43,7 @@ public class TouchView extends View {
         paint.setAntiAlias(true);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-
-        bmp =  BitmapFactory.decodeResource(
-                getContext().getResources(),
-                R.mipmap.ic_launcher);
-
-        halfWidth = bmp.getWidth() / 2;
-    }
+     }
 
 
 
@@ -59,8 +52,6 @@ public class TouchView extends View {
         float x = e.getX();
         float y = e.getY();
 
-        androidX = x;
-        androidY = y;
         int action = e.getAction();
 
         switch (action){
@@ -69,7 +60,17 @@ public class TouchView extends View {
                 path.moveTo(x, y);
                 break;
             case MotionEvent.ACTION_MOVE:
+
+             //   Log.d(TAG, String.format("History Size: %d", e.getHistorySize()));
+
+                for (int i = 0; i < e.getHistorySize(); i++) {
+                    float historicalX = e.getHistoricalX(i);
+                    float historicalY = e.getHistoricalY(i);
+                    path.lineTo(historicalX, historicalY);
+                }
                 path.lineTo(x, y);
+
+                path.cubicTo();
                 break;
         }
 
@@ -81,7 +82,7 @@ public class TouchView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(bmp, androidX - halfWidth, androidY - halfWidth, null);
-       // canvas.drawPath(path, paint);
+        //canvas.drawBitmap(bmp, androidX - halfWidth, androidY - halfWidth, null);
+        canvas.drawPath(path, paint);
     }
 }
