@@ -69,6 +69,14 @@ public class MultiTouchView extends View {
                     currentPointer.y = e.getY(pointerIndex);
                     //currentPointer.set(e.getX(pointerIndex), e.getY(pointerIndex));
                 }
+
+
+                for (int h = 0; h < e.getHistorySize(); h++) {
+                    for (int po = 0; po < e.getPointerCount(); po++) {
+                        Log.d(TAG, "" + e.getHistoricalX(h,po));
+                        Log.d(TAG, "" + e.getHistoricalY(h,po));
+                    }
+                }
                 break;
 
             case MotionEvent.ACTION_UP:

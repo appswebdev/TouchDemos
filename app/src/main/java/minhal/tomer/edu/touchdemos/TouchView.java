@@ -23,7 +23,7 @@ public class TouchView extends View {
     Bitmap bmp;
 
     public TouchView(Context context) {
-         this(context, null);
+        this(context, null);
     }
 
 
@@ -31,7 +31,6 @@ public class TouchView extends View {
         super(context, attrs);
         init();
     }
-
 
 
     private void init() {
@@ -43,8 +42,7 @@ public class TouchView extends View {
         paint.setAntiAlias(true);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-     }
-
+    }
 
 
     @Override
@@ -54,23 +52,22 @@ public class TouchView extends View {
 
         int action = e.getAction();
 
-        switch (action){
+        switch (action) {
 
             case MotionEvent.ACTION_DOWN:
                 path.moveTo(x, y);
                 break;
             case MotionEvent.ACTION_MOVE:
 
-             //   Log.d(TAG, String.format("History Size: %d", e.getHistorySize()));
+                //   Log.d(TAG, String.format("History Size: %d", e.getHistorySize()));
 
-                for (int i = 0; i < e.getHistorySize(); i++) {
-                    float historicalX = e.getHistoricalX(i);
-                    float historicalY = e.getHistoricalY(i);
-                    path.lineTo(historicalX, historicalY);
+                for (int i = 0; i < e.getHistorySize() - 2; i += 3) {
+
+                    path.cubicTo(e.getHistoricalX(i), e.getHistoricalY(i),
+                            e.getHistoricalX(i + 1), e.getHistoricalY(i + 1),
+                            e.getHistoricalX(i + 2), e.getHistoricalY(i + 2));
                 }
-                path.lineTo(x, y);
 
-                path.cubicTo();
                 break;
         }
 
